@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Bad role! Bad. Role.
+
+Resources:
+  OhNoDontHackMeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: OhNoDontHackMe
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: '*'
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+      Description: Aw man.
+
+Outputs:
+  RoleName:
+    Description: Name of the role created
+    Value: !Ref OhNoDontHackMeRole
